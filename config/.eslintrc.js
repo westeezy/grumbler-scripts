@@ -38,7 +38,7 @@ module.exports = {
             '@typescript-eslint/parser': ['.ts', '.tsx']
         },
         'react': {
-            'version': 'detect'
+            'version': '16.0'
         }
     },
 
@@ -57,6 +57,7 @@ module.exports = {
 
     'rules': {
         '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/type-annotation-spacing': ['error', {'before': true, 'after': true }],
 
         'comma-dangle': 'error',
         'no-cond-assign': 'error',
