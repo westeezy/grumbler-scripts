@@ -5,18 +5,18 @@ import { getWebpackConfig } from './webpack.config';
 
 type KarmaConfig = Record<string, unknown>;
 type Karma = {
-    LOG_DEBUG: 'LOG_DEBUG';
-    LOG_WARN: 'LOG_WARN';
-    set: (arg0: KarmaConfig) => void;
+    LOG_DEBUG : 'LOG_DEBUG';
+    LOG_WARN : 'LOG_WARN';
+    set : (arg0 : KarmaConfig) => void;
 };
 type Config = {
-    testDir?: string;
-    windowDir?: string;
-    entry?: string;
-    basePath?: string;
-    webpack?: WebpackConfig;
+    testDir ?: string;
+    windowDir ?: string;
+    entry ?: string;
+    basePath ?: string;
+    webpack ?: WebpackConfig;
 };
-export function getKarmaConfig(karma: Karma, cfg: Config): KarmaConfig {
+export function getKarmaConfig(karma : Karma, cfg : Config) : KarmaConfig {
     const {
         testDir = 'test',
         windowDir = `${ testDir }/windows`,
@@ -34,8 +34,8 @@ export function getKarmaConfig(karma: Karma, cfg: Config): KarmaConfig {
     const headless = !keepOpen;
     const devTools = Boolean(argv.devTools);
     // @ts-ignore
-    const browsers: string = argv.browser;
-    const karmaConfig: Record<string, any> = {
+    const browsers : string = argv.browser;
+    const karmaConfig : Record<string, any> = {
         files: [
             {
                 pattern: entry,
@@ -158,7 +158,7 @@ export function getKarmaConfig(karma: Karma, cfg: Config): KarmaConfig {
 }
 
 // eslint-disable-next-line import/no-default-export
-export default (karma: Karma): void =>
+export default (karma : Karma) : void =>
     karma.set(
         getKarmaConfig(karma, {
             basePath: process.cwd()

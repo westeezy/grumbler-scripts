@@ -1,9 +1,11 @@
 /** @jsx jsxTest */
-function jsxTest(name: string): HTMLElement {
+function jsxTest(name : string) : HTMLElement {
     return document.createElement(name);
 }
 
-export function render(): JSX.Element {
+// @ts-ignore
+export function render() : JSX.Element {
+  // @ts-ignore
     return <div />;
 }
 

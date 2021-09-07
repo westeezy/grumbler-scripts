@@ -1,7 +1,7 @@
 export { render } from './component';
 
-export async function foo(): Promise<unknown> {
-    async function bar(...args: unknown[]): Promise<number> {
+export async function foo() : Promise<unknown> {
+    async function bar(...args : unknown[]) : Promise<number> {
         args.push(1);
         return await new Promise<number>((resolve) => resolve(10));
     }
@@ -22,8 +22,8 @@ export async function foo(): Promise<unknown> {
     } = await import('./dependency');
     return await bar(baz, rest, x, berk);
 }
-export function fooz(bar: boolean) {
-    return function decorateFooz (target: unknown, propertyKey: string, descriptor: PropertyDescriptor): void {
+export function fooz(bar : boolean) {
+    return function decorateFooz (target : unknown, propertyKey : string, descriptor : PropertyDescriptor) : void {
         descriptor.enumerable = bar;
     };
 }
@@ -31,7 +31,7 @@ export class Foo {
     bar = 1337;
 
     @fooz(false)
-    baz(): number {
+    baz() : number {
         return 5;
     }
 

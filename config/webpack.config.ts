@@ -7,6 +7,7 @@ import rimraf from 'rimraf';
 import semver from 'semver';
 import webpack from 'webpack';
 import nodeCleanup from 'node-cleanup';
+// @ts-ignore - need to update to ts version
 import TerserPlugin from 'terser-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
@@ -119,18 +120,18 @@ const setupCacheDirs = ({ dynamic = false } = {}) => {
 };
 
 type JSONifyPrimitivesOptions = {
-    autoWindowGlobal: boolean;
+    autoWindowGlobal : boolean;
 };
 
-const getJSONifyPrimitivesOptionsDefault = (): JSONifyPrimitivesOptions => {
+const getJSONifyPrimitivesOptionsDefault = () : JSONifyPrimitivesOptions => {
     // @ts-ignore - wat is this doing
     return {};
 };
 
 function jsonifyPrimitives(
-    item: Record<string, unknown>,
-    opts: JSONifyPrimitivesOptions = getJSONifyPrimitivesOptionsDefault()
-): Record<string, any> {
+    item : Record<string, unknown>,
+    opts : JSONifyPrimitivesOptions = getJSONifyPrimitivesOptionsDefault()
+) : Record<string, any> {
     const { autoWindowGlobal = false } = opts;
 
     if (autoWindowGlobal) {
@@ -200,7 +201,7 @@ function jsonifyPrimitives(
     }
 }
 
-function uniqueID(): string {
+function uniqueID() : string {
     const chars = '0123456789abcdef';
     const randomID = 'xxxxxxxxxx'.replace(/./g, () => {
         return chars.charAt(Math.floor(Math.random() * chars.length));
@@ -208,15 +209,15 @@ function uniqueID(): string {
     return randomID;
 }
 
-export function getCurrentVersion(pkg: { version: string }): string {
+export function getCurrentVersion(pkg : { version : string }) : string {
     return pkg.version.replace(/[^\d]+/g, '_');
 }
 export function getNextVersion(
-    pkg: {
-        version: string;
+    pkg : {
+        version : string;
     },
     level = 'patch'
-): string {
+) : string {
     return getCurrentVersion({
         // @ts-ignore - potentially lib type issue
         version: semver.inc(pkg.version, level)
@@ -244,7 +245,7 @@ export function getWebpackConfig({
     // @ts-ignore - property does not exist error
     optimize = env !== 'local',
     babelConfig = join(__dirname, './.babelrc-browser')
-}: WebpackConfigOptions = {}): WebpackConfig {
+} : WebpackConfigOptions = {}) : WebpackConfig {
     const enableSourceMap = sourcemaps && web && !test;
     const enableInlineSourceMap = enableSourceMap && (test || debug);
     const enableCheckCircularDeps = test;
@@ -412,7 +413,7 @@ export function getWebpackConfig({
         loader:'raw-loader'
     });
 
-    const output: Record<string, any> = {
+    const output : Record<string, any> = {
         path,
         filename,
         globalObject,
